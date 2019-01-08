@@ -1,14 +1,18 @@
 package smile.khaled.mohamed.task.view.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +21,11 @@ import retrofit2.Callback;
 import smile.khaled.mohamed.task.R;
 import smile.khaled.mohamed.task.databinding.ActivityMainBinding;
 import smile.khaled.mohamed.task.service.response.repo.RepoResponse;
+import smile.khaled.mohamed.task.service.response.search.SearchResponse;
 import smile.khaled.mohamed.task.view.IRepoHandler;
 import smile.khaled.mohamed.task.view.adapter.RepositoriesAdapter;
+import smile.khaled.mohamed.task.viewmodel.MainViewModel;
+import smile.khaled.mohamed.task.viewmodel.SearchViewModel;
 
 import static smile.khaled.mohamed.task.data.Constants.REPO_NAME;
 import static smile.khaled.mohamed.task.data.Constants.SUBSCRIBERS_URL;
@@ -31,7 +38,7 @@ public class MainActivity extends BaseActivity implements IRepoHandler {
     private RepositoriesAdapter mAdapter;
     private List<RepoResponse> repoResponseList = new ArrayList<>();
     private SearchView searchView;
-
+    private MainViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,20 +51,14 @@ public class MainActivity extends BaseActivity implements IRepoHandler {
         binding.recycler.setAdapter(mAdapter);
 
 
-    service.getRepositoryApi().enqueue(new Callback<List<RepoResponse>>() {
-        @Override
-        public void onResponse(Call<List<RepoResponse>> call, retrofit2.Response<List<RepoResponse>> response) {
-            Log.e("Done",response.body()+"");
-            repoResponseList.addAll(response.body());
-            mAdapter.notifyDataSetChanged();
-
-        }
-
-        @Override
-        public void onFailure(Call<List<RepoResponse>> call, Throwable t) {
-            Log.e("Error",t.getMessage()+"");
-        }
-    });
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getrepositoriesObservable().observe(this, new Observer<List<RepoResponse>>() {
+            @Override
+            public void onChanged(@Nullable List<RepoResponse> repoResponses) {
+                repoResponseList.addAll(repoResponses);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

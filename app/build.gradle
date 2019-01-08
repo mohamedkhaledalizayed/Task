@@ -1,3 +1,6 @@
+project.ext {
+    arch = "1.1.1"
+}
 apply plugin: 'com.android.application'
 
 android {
@@ -38,6 +41,10 @@ dependencies {
     implementation 'com.github.Tripl3Dev:PrettyStateView:2.1.1'
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
     implementation 'com.intuit.ssp:ssp-android:1.0.5'
+
+    implementation "android.arch.lifecycle:runtime:$project.arch"
+    implementation "android.arch.lifecycle:extensions:$project.arch"
+    annotationProcessor "android.arch.lifecycle:compiler:$project.arch"
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

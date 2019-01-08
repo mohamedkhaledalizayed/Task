@@ -16,7 +16,9 @@ public interface ServiceApi {
 
 
     @GET("search/repositories")
-    Call<SearchResponse> searchRepositoryApi(@Query("q") String name);
+    Call<SearchResponse> searchRepositoryApi(@Query("q") String name,
+                                             @Query("per_page") int per,
+                                             @Query("page") int page);
 
     @GET
     Call<List<Subscribers>> getSubscribers(@Url String url);
