@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Task</string>
+    <string name="search_hint">Search</string>
+    <string name="action_search">Search</string>
+</resources>

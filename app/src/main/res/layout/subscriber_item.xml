@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="subscriper"
+            type="smile.khaled.mohamed.task.model.Subscriper"/>
+    </data>
+    <LinearLayout
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:id="@+id/item_id"
+        android:background="@drawable/item_bg"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/avater"
+                bind:imageUrl="@{subscriper.imageUrl}"
+                android:layout_alignParentStart="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/repo_name"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{subscriper.name}"
+                android:layout_toEndOf="@+id/avater"
+                android:layout_marginTop="15dp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/owner_name"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/repo_name"
+                android:layout_toEndOf="@+id/avater"
+                android:layout_marginTop="5dp"
+                />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repo_descreption"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+</layout>
