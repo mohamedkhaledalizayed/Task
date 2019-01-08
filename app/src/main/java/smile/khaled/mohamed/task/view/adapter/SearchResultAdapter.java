@@ -10,15 +10,17 @@ import java.util.List;
 
         import smile.khaled.mohamed.task.R;
 import smile.khaled.mohamed.task.databinding.RepositoryItemBinding;
+import smile.khaled.mohamed.task.model.Repo;
+import smile.khaled.mohamed.task.service.response.search.ItemsItem;
 import smile.khaled.mohamed.task.service.response.search.SearchResponse;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.MyViewHolder>
 {
 
-    private List<SearchResponse> responseList;
+    private List<ItemsItem> responseList;
     private Context context;
     private LayoutInflater layoutInflater;
-    public SearchResultAdapter(Context context, List<SearchResponse> recentList) {
+    public SearchResultAdapter(Context context, List<ItemsItem> recentList) {
         this.responseList = recentList;
         this.context=context;
     }
@@ -37,7 +39,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(final SearchResultAdapter.MyViewHolder holder, final int position) {
-
+        holder.binding.setRepo(new Repo(responseList.get(position).getName(),
+                responseList.get(position).getOwner().getLogin(),
+                responseList.get(position).getDescription(),
+                responseList.get(position).getOwner().getAvatarUrl()));
 
     }
 

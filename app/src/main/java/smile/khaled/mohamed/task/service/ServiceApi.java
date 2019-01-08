@@ -16,7 +16,7 @@ public interface ServiceApi {
 
 
     @GET("search/repositories")
-    Call<List<SearchResponse>> searchRepositoryApi(@Query("q") String name);
+    Call<SearchResponse> searchRepositoryApi(@Query("q") String name);
 
     @GET
     Call<List<Subscribers>> getSubscribers(@Url String url);

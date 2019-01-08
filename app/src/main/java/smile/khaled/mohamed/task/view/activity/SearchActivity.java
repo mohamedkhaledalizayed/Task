@@ -14,6 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import smile.khaled.mohamed.task.R;
 import smile.khaled.mohamed.task.databinding.ActivitySearchBinding;
+import smile.khaled.mohamed.task.service.response.search.ItemsItem;
 import smile.khaled.mohamed.task.service.response.search.SearchResponse;
 import smile.khaled.mohamed.task.view.adapter.SearchResultAdapter;
 
@@ -24,7 +25,7 @@ public class SearchActivity extends BaseActivity {
     private LinearLayoutManager mLayoutManager;
     private ActivitySearchBinding binding;
     private SearchResultAdapter mAdapter;
-    private List<SearchResponse> responseList = new ArrayList<>();
+    private List<ItemsItem> responseList = new ArrayList<>();
     private String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +41,21 @@ public class SearchActivity extends BaseActivity {
         binding.recycler.setAdapter(mAdapter);
 
 
-        service.searchRepositoryApi(name).enqueue(new Callback<List<SearchResponse>>() {
+
+        service.searchRepositoryApi(name).enqueue(new Callback<SearchResponse>() {
             @Override
-            public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 Log.e("Done",response.body()+"");
 
-                responseList.addAll(response.body());
+                responseList.addAll(response.body().getItems());
                 mAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<SearchResponse>> call, Throwable t) {
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
                 Log.e("Error",t.getMessage()+"");
             }
         });
+
     }
 }
