@@ -6,23 +6,17 @@
             name="subscriper"
             type="smile.khaled.mohamed.task.model.Subscriper"/>
     </data>
-    <LinearLayout
-        xmlns:bind="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="5dp"
-        android:padding="10dp"
-        android:id="@+id/item_id"
-        android:background="@drawable/item_bg"
-        >
 
         <RelativeLayout
+            xmlns:bind="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:id="@+id/item_id"
+            android:background="@drawable/item_bg"
             >
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -41,36 +35,9 @@
                 android:layout_marginStart="10dp"
                 android:text="@{subscriper.name}"
                 android:layout_toEndOf="@+id/avater"
-                android:layout_marginTop="15dp"
+                android:layout_centerVertical="true"
                 />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_name"
-                android:layout_marginStart="10dp"
-                android:layout_below="@+id/repo_name"
-                android:layout_toEndOf="@+id/avater"
-                android:layout_marginTop="5dp"
-                />
         </RelativeLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/backbround_color"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/repo_descreption"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            android:maxLines="2"
-            android:ellipsize="end"
-            />
-
-    </LinearLayout>
 </layout>

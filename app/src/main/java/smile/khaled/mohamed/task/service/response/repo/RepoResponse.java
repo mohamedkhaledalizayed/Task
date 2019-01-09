@@ -142,6 +142,8 @@ public class RepoResponse{
 	@SerializedName("node_id")
 	private String nodeId;
 
+	private int status;
+
 	public void setTagsUrl(String tagsUrl){
 		this.tagsUrl = tagsUrl;
 	}
@@ -508,6 +510,14 @@ public class RepoResponse{
 
 	public String getNodeId(){
 		return nodeId;
+	}
+
+	public void setStatus(int status){
+		this.status = status;
+	}
+
+	public int getStatus(){
+		return status;
 	}
 
 	@Override

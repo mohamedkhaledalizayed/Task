@@ -14,6 +14,8 @@ public class SearchResponse{
 	@SerializedName("items")
 	private List<ItemsItem> items;
 
+	private int status;
+
 	public void setTotalCount(int totalCount){
 		this.totalCount = totalCount;
 	}
@@ -36,6 +38,14 @@ public class SearchResponse{
 
 	public List<ItemsItem> getItems(){
 		return items;
+	}
+
+	public void setStatus(int status){
+		this.status = status;
+	}
+
+	public int getStatus(){
+		return status;
 	}
 
 	@Override

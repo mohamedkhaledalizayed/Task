@@ -27,7 +27,6 @@ public class SubscribersRepository {
         service.getSubscribers(url).enqueue(new Callback<List<Subscribers>>() {
             @Override
             public void onResponse(Call<List<Subscribers>> call, Response<List<Subscribers>> response) {
-                Log.e("Done", response.body() + "");
                 if (response.body() != null) {
                     data.setValue(response.body());
                 }
